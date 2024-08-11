@@ -18,7 +18,7 @@ const openai = new OpenAI({  apiKey: process.env.open_ai_key});
 
 
 
-
+//www
  export async function GET(req){
     try{
     const user_id = req.headers.get('user_id');
