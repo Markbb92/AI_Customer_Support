@@ -7,6 +7,58 @@
   min-height: 100vh;
 }
 
+.chatContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.botMessage, .userMessage {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.botMessage {
+  background-color: #e6f3ff;
+}
+
+.userMessage {
+  background-color: #f0f0f0;
+  text-align: right;
+}
+
+.inputContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sendButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.sendButton:hover {
+  background-color: #0056b3;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
