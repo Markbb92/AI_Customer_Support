@@ -18,13 +18,10 @@ const openai = new OpenAI({  apiKey: process.env.open_ai_key});
 
 
 
-//www
  export async function GET(req){
     try{
     const user_id = req.headers.get('user_id');
     const chatHistoryCollectionRef = collection(db,"chat-history")
-    //firebase is extremely annoying here and does not let me query with a where clause and order by clause at the same time
-    //in the client -> need to map in reverse order. messages.reverse().map()
     const chatHistoryFromUser = query(chatHistoryCollectionRef,where("user_id","==",user_id),orderBy("timestamp","asc"))
     //pass this as context to the chain
     const chatHistorySnapshot = await getDocs(chatHistoryFromUser)
@@ -91,7 +88,7 @@ const openai = new OpenAI({  apiKey: process.env.open_ai_key});
     )
 
 
-    return NextResponse.json('success;y added message',{status:200})
+    return NextResponse.json('successfully added message',{status:200})
 }
 catch(error){
     return NextResponse.json({error:error.message},{status:400})
