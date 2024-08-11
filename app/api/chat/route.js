@@ -1,10 +1,12 @@
-import { SystemPrompt } from "@/app/SystemPrompt"
-import { ChatMessageHistory } from "@langchain/community/stores/message/in_memory"
-import { AIMessage, HumanMessage } from "@langchain/core/messages"
-import { ChatOpenAI } from "@langchain/openai"
-import { Pinecone } from '@pinecone-database/pinecone'
-import { NextResponse } from "next/server"
 import OpenAI from "openai"
+import { ConversationSummaryBufferMemory } from "langchain/memory";
+import { ConversationChain } from "langchain/chains";
+import { SystemPrompt } from "@/app/SystemPrompt"
+import { NextResponse } from "next/server"
+import { Pinecone } from '@pinecone-database/pinecone'
+import { ChatOpenAI } from "@langchain/openai"
+import { HumanMessage, AIMessage } from "@langchain/core/messages"
+import { ChatMessageHistory } from "@langchain/community/stores/message/in_memory"
 
 // const chat = new ChatOpenAI({
 //   model: "gpt-3.5-turbo-1106",
@@ -21,16 +23,6 @@ const openai = new OpenAI({
 
 export async function POST(req) {
     const data = await req.json()
-
-    // Check if it's an initial message
-    if (data[0].role === "system" && data[0].content === "Initial message") {
-        const initialMessage = {
-            role: "assistant",
-            content: "Hello! I'm the AI customer support bot. How can I assist you today?"
-        };
-        return NextResponse.json({data: [initialMessage]}, {status: 200});
-    }
-
     chatMessageHistory.addMessage({"role":data[0]["role"],"content":data[0]["content"]})
     // const {messages} = await req.json()
     // console.log(messages)
